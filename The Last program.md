@@ -50,7 +50,7 @@ public void actionPerformed(ActionEvent e) {
         }  
 	
 	
-ublic void actionPerformed(ActionEvent e) {
+public void actionPerformed(ActionEvent e) {
         if(e.getSource()==btRegister) {
             String password1=new String(pfPassword.getPassword());
             String password2=new String(pfPassword2.getPassword());
@@ -114,3 +114,6 @@ ublic void actionPerformed(ActionEvent e) {
 		return null;
 	}
 
+编程感想  
+    在这次的学生选课系统综合实验中，学会了输入输出流的基本运用，将结果写入文件中，再读取文件。学会了如何GUI页面的初步应用和页面布局，
+学会了事件的基本应用，如何进行页面的跳转。学会了数组字符串的转化应用。
