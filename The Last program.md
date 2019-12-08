@@ -1,5 +1,7 @@
-大181   马海   2018310986
-实验五  综合性实验  学生选课系统设计
+大181   马海   2018310986  
+
+实验五  综合性实验  学生选课系统设计  
+
 实验目的
     分析学生选课系统
     使用GUI窗体及其组件设计窗体界面
@@ -29,13 +31,26 @@
 否则将会抛出文件异常。建立登录页面，在页面中设置登录注册按钮，用户要先进行注册，将信息存储到文件里。在登录界面，
 String account=tfAccount.getText();String password=new String(pfPassword.getPassword());FileOpe.getInfoByAccount(account);
 来获取已经储存了的用户信息。如果密码或用户名不一致则无法进行登录。在管理系统中，分别建立两个类来描述学生和教师信息。在教师信息界面
-中，设置编号，姓名，年龄，所教课程等变量；在学生信息界面中，设置学号，姓名，年龄，所选课程等变量。分别建立教师和学生数组，将信息分别
-存储在两个文件夹之中。在显示打印结果的时候，将文件中的信息打印出来。
+中，设置编号，姓名，年龄，所教课程等变量；在学生信息界面中，设置学号，姓名，年龄，所选课程等变量。分别建立教师和学生数组，将信息分别存储在两个文件夹之中。在显示打印结果的时候，将文件中的信息打印出来。  
+
 核心代码  
 
-
-       
 public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==btLogin) {
+            String account=tfAccount.getText();
+            String password=new String(pfPassword.getPassword());
+            FileOpe.getInfoByAccount(account);
+            if(Conf.account==null||!Conf.password.equals(password)) {
+                JOptionPane.showMessageDialog(this,"登录失败");
+                return;
+            }
+            JOptionPane.showMessageDialog(this,"登录成功");
+            this.dispose();
+            new Login();
+        }  
+	
+	
+ublic void actionPerformed(ActionEvent e) {
         if(e.getSource()==btRegister) {
             String password1=new String(pfPassword.getPassword());
             String password2=new String(pfPassword2.getPassword());
@@ -98,3 +113,4 @@ public void actionPerformed(ActionEvent e) {
 		// TODO 自动生成的方法存根
 		return null;
 	}
+
