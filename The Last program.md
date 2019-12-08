@@ -31,7 +31,7 @@ String account=tfAccount.getText();String password=new String(pfPassword.getPass
 中，设置编号，姓名，年龄，所教课程等变量；在学生信息界面中，设置学号，姓名，年龄，所选课程等变量。分别建立教师和学生数组，将信息分别
 存储在两个文件夹之中。在显示打印结果的时候，将文件中的信息打印出来。
 核心代码
- public void actionPerformed(ActionEvent e) {
+public void actionPerformed(ActionEvent e) {
         if(e.getSource()==btLogin) {
             String account=tfAccount.getText();
             String password=new String(pfPassword.getPassword());
@@ -44,4 +44,67 @@ String account=tfAccount.getText();String password=new String(pfPassword.getPass
             this.dispose();
             new Login();
         }
-
+       
+public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==btRegister) {
+            String password1=new String(pfPassword.getPassword());
+            String password2=new String(pfPassword2.getPassword());
+            if(!password1.equals(password2)) {
+                JOptionPane.showMessageDialog(this,"两个密码不相同");
+                return;
+            }
+            String account=tfAccount.getText();
+            FileOpe.getInfoByAccount(account);
+            if(Conf.account!=null) {
+                JOptionPane.showMessageDialog(this,"用户已经注册");
+                return;
+            }
+            String name=tfName.getText();
+            
+            FileOpe.updateCustomer(account,password1,name, name);
+            JOptionPane.showMessageDialog(this,"注册成功");
+        }
+        else if(e.getSource()==btLogin) {
+            this.dispose();
+            new LoginFrame();
+        }
+        else {
+            JOptionPane.showMessageDialog(this,"谢谢光临");
+            System.exit(0);
+        }
+    }
+    
+    
+    public void update(Teacher_information tea) {
+		int flag=find(tea.getteaID());    //查找是否存在
+		arry.set(flag, tea);		   //替换 flag 处的学生信息
+	}	
+	// 读文件，
+	public boolean readfile() {					 
+			String t=null;
+			try{
+				FileReader f1 = new FileReader("teacher.txt");
+				BufferedReader br=new BufferedReader(f1);				
+				arry.clear();    //	清除原数组列表中的数据				
+				while ((t= br.readLine())!= null)
+					{
+					  String [] s=t.split("\\s+");				 
+					  Teacher_information te=Teacher_information(s[0],s[1],s[2],s[3],s[4],s[5],s[6]);//注意若该文件每行没有七个字符串，则会出错
+					  arry.add(te);
+					  System.out.println("读取文件：");
+					  System.out.println(s[0]);
+					}
+				     f1.close();
+				     br.close();				     
+				     return true;
+					} catch (IOException e) {
+							// TODO 自动生成的 catch 块
+					e.printStackTrace();
+					return false;
+				}	
+		     }					
+	private Teacher_information Teacher_information(String string, String string2, String string3, String string4,
+			String string5, String string6, String string7) {
+		// TODO 自动生成的方法存根
+		return null;
+	}
